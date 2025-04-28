@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Títulos del Real Madrid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .escudo {
+            width: 200px; /* Tamaño del escudo */
+            margin-top: 50px;
+        }
+
+        .titulo {
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .titulo-lista {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .titulo-item {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Escudo del Real Madrid -->
+    <img class="escudo" src="https://upload.wikimedia.org/wikipedia/commons/5/54/Real_Madrid_logo.svg" alt="Escudo Real Madrid">
+
+    <!-- Título -->
+    <div class="titulo">
+        Títulos del Real Madrid
+    </div>
+
+    <!-- Lista de títulos -->
+    <ul class="titulo-lista" id="titulo-lista">
+        <!-- Los títulos se cargarán aquí -->
+    </ul>
+
+    <script>
+        // Cargar el archivo titles.json y mostrar los títulos
+        fetch('titles.json')
+            .then(response => response.json())
+            .then(data => {
+                const lista = document.getElementById('titulo-lista');
+                data.forEach(titulo => {
+                    const li = document.createElement('li');
+                    li.classList.add('titulo-item');
+                    li.textContent = `${titulo.nombre} - ${titulo.anio}`;
+                    lista.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error cargando los títulos:', error));
+    </script>
+
+</body>
+</html>
